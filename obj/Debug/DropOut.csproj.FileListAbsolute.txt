@@ -1,0 +1,8 @@
+D:\Github\DropOut\bin\Debug\DropOut.dll
+D:\Github\DropOut\bin\Debug\DropOut.pdb
+D:\Github\DropOut\obj\Debug\DropOut.DropOutForm.resources
+D:\Github\DropOut\obj\Debug\DropOut.Properties.Resources.resources
+D:\Github\DropOut\obj\Debug\DropOut.csproj.GenerateResource.Cache
+D:\Github\DropOut\obj\Debug\DropOut.dll
+D:\Github\DropOut\obj\Debug\DropOut.pdb
+D:\Github\DropOut\obj\Debug\DropOut.csprojResolveAssemblyReference.cache
