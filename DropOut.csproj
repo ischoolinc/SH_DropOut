@@ -95,7 +95,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Student.cs" />
+    <Compile Include="StudentObj.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DropOutForm.resx">
@@ -104,12 +104,14 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Report.png" />
     <None Include="Resources\休學證明書.doc" />
+    <None Include="Resources\休學證明書合併欄位.doc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Report.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -43,6 +43,7 @@
 			this.dateTimeInput2 = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
 			this.linkDefault = new System.Windows.Forms.LinkLabel();
 			this.linkCustom = new System.Windows.Forms.LinkLabel();
+			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			((System.ComponentModel.ISupportInitialize)(this.dateTimeInput1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateTimeInput2)).BeginInit();
 			this.SuspendLayout();
@@ -52,7 +53,7 @@
 			this.btnPrint.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.btnPrint.BackColor = System.Drawing.Color.Transparent;
 			this.btnPrint.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.btnPrint.Location = new System.Drawing.Point(167, 163);
+			this.btnPrint.Location = new System.Drawing.Point(158, 198);
 			this.btnPrint.Name = "btnPrint";
 			this.btnPrint.Size = new System.Drawing.Size(75, 23);
 			this.btnPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -65,7 +66,7 @@
 			this.btnClose.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.btnClose.BackColor = System.Drawing.Color.Transparent;
 			this.btnClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.btnClose.Location = new System.Drawing.Point(246, 163);
+			this.btnClose.Location = new System.Drawing.Point(239, 198);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(75, 23);
 			this.btnClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -78,7 +79,7 @@
 			this.radioButton1.AutoSize = true;
 			this.radioButton1.BackColor = System.Drawing.Color.Transparent;
 			this.radioButton1.Checked = true;
-			this.radioButton1.Location = new System.Drawing.Point(18, 140);
+			this.radioButton1.Location = new System.Drawing.Point(18, 172);
 			this.radioButton1.Name = "radioButton1";
 			this.radioButton1.Size = new System.Drawing.Size(14, 13);
 			this.radioButton1.TabIndex = 5;
@@ -89,7 +90,7 @@
 			// 
 			this.radioButton2.AutoSize = true;
 			this.radioButton2.BackColor = System.Drawing.Color.Transparent;
-			this.radioButton2.Location = new System.Drawing.Point(18, 167);
+			this.radioButton2.Location = new System.Drawing.Point(18, 204);
 			this.radioButton2.Name = "radioButton2";
 			this.radioButton2.Size = new System.Drawing.Size(14, 13);
 			this.radioButton2.TabIndex = 6;
@@ -100,7 +101,7 @@
 			// 
 			this.linkLabel1.AutoSize = true;
 			this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
-			this.linkLabel1.Location = new System.Drawing.Point(104, 165);
+			this.linkLabel1.Location = new System.Drawing.Point(104, 204);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(34, 17);
 			this.linkLabel1.TabIndex = 7;
@@ -292,7 +293,7 @@
 			// 
 			this.linkDefault.AutoSize = true;
 			this.linkDefault.BackColor = System.Drawing.Color.Transparent;
-			this.linkDefault.Location = new System.Drawing.Point(38, 140);
+			this.linkDefault.Location = new System.Drawing.Point(38, 172);
 			this.linkDefault.Name = "linkDefault";
 			this.linkDefault.Size = new System.Drawing.Size(60, 17);
 			this.linkDefault.TabIndex = 16;
@@ -304,7 +305,7 @@
 			// 
 			this.linkCustom.AutoSize = true;
 			this.linkCustom.BackColor = System.Drawing.Color.Transparent;
-			this.linkCustom.Location = new System.Drawing.Point(38, 165);
+			this.linkCustom.Location = new System.Drawing.Point(38, 204);
 			this.linkCustom.Name = "linkCustom";
 			this.linkCustom.Size = new System.Drawing.Size(60, 17);
 			this.linkCustom.TabIndex = 17;
@@ -312,11 +313,24 @@
 			this.linkCustom.Text = "自訂樣板";
 			this.linkCustom.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCustom_LinkClicked);
 			// 
+			// linkLabel2
+			// 
+			this.linkLabel2.AutoSize = true;
+			this.linkLabel2.BackColor = System.Drawing.Color.Transparent;
+			this.linkLabel2.Location = new System.Drawing.Point(21, 142);
+			this.linkLabel2.Name = "linkLabel2";
+			this.linkLabel2.Size = new System.Drawing.Size(86, 17);
+			this.linkLabel2.TabIndex = 18;
+			this.linkLabel2.TabStop = true;
+			this.linkLabel2.Text = "合併欄位檢視";
+			this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+			// 
 			// DropOutForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(333, 202);
+			this.ClientSize = new System.Drawing.Size(326, 236);
+			this.Controls.Add(this.linkLabel2);
 			this.Controls.Add(this.linkCustom);
 			this.Controls.Add(this.linkDefault);
 			this.Controls.Add(this.dateTimeInput2);
@@ -359,5 +373,6 @@
 		private DevComponents.Editors.DateTimeAdv.DateTimeInput dateTimeInput2;
 		private System.Windows.Forms.LinkLabel linkDefault;
 		private System.Windows.Forms.LinkLabel linkCustom;
+		private System.Windows.Forms.LinkLabel linkLabel2;
 	}
 }

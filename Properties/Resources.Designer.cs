@@ -79,5 +79,15 @@ namespace DropOut.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 休學證明書合併欄位 {
+            get {
+                object obj = ResourceManager.GetObject("休學證明書合併欄位", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
