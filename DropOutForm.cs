@@ -57,7 +57,7 @@ namespace DropOut
 		private void _bgWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
 			Document doc = new Document();
-			Document template;
+			Document template = null;
 			if (radioButton1.Checked == true)
 			{
 				//選擇預設範本時的動作
@@ -65,8 +65,26 @@ namespace DropOut
 			}
 			else if (radioButton2.Checked == true)
 			{//選擇自訂範本時的動作
+				//School.Configuration.Remove(cd);
+				//return;
 				string str = cd["CustomizeTemplate"];
-				template = (new Document(new MemoryStream(Convert.FromBase64String(str)))).Clone();
+
+				if (template == null)
+				{
+					try
+					{
+						template = (new Document(new MemoryStream(Convert.FromBase64String(str)))).Clone();
+					}
+					catch (Exception ex)
+					{
+						throw new InvalidOperationException("尚未上傳自訂樣板"); 
+						//MsgBox.Show("尚未上傳自訂樣板");
+						//return;
+					}
+					
+					//template = new Document(new MemoryStream(defalutTemplate));
+				}
+					
 			}
 			else
 			{
