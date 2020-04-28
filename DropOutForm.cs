@@ -9,10 +9,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Runtime.ExceptionServices;
 
 namespace DropOut
 {
@@ -40,7 +42,27 @@ namespace DropOut
 			DateTime.TryParse("" + dtable.Rows[0][0], out dt); //Parse資料
 			return  dt.ToString("yyyy年MM月dd日"); //最後時間
 		}
-		private void btnPrint_Click(object sender, EventArgs e)
+
+        private string GetServerTimeTW() //取得Server的時間
+        {
+            QueryHelper Sql = new QueryHelper();
+            DataTable dtable = Sql.Select("select now()"); //取得時間
+            DateTime serverdata = DateTime.Now;
+            DateTime.TryParse("" + dtable.Rows[0][0], out serverdata); //Parse資料
+
+            //西元年轉換民國年
+            string dataString3 = serverdata.ToString("yyyyMMdd");
+            DateTime dt3 = DateTime.ParseExact(dataString3, "yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture);
+            var taiwanCalender = new System.Globalization.TaiwanCalendar();
+            var dateTime3 = string.Format("{0} 年 {1} 月 {2} 日", taiwanCalender.GetYear(dt3), dt3.Month, dt3.Day);
+
+            return dateTime3;
+
+        }
+
+
+
+        private void btnPrint_Click(object sender, EventArgs e)
 		{
 			if (textBoxX1.Text.Trim() == "" || textBoxX2.Text.Trim() == "")
 				if (MessageBox.Show("校內文號輸入不完整，請問是否繼續列印 ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
@@ -100,8 +122,21 @@ namespace DropOut
 			string DSNSName = SHSchool.Data.SHSchoolInfo.ChineseName;
 			string Principal = K12.Data.School.Configuration["學校資訊"].PreviousData.SelectSingleNode("ChancellorChineseName").InnerText;
 
-			#region 取得選取學生
-			List<SHStudentRecord> studentAll = SHStudent.SelectByIDs(studentIds);
+
+
+            string dataString1 = dateTimeInput1.Value.ToString("yyyyMMdd");
+            string dataString2 = dateTimeInput2.Value.ToString("yyyyMMdd");
+
+            DateTime dt1 = DateTime.ParseExact(dataString1, "yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture);
+            DateTime dt2 = DateTime.ParseExact(dataString2, "yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture);
+            var taiwanCalender = new System.Globalization.TaiwanCalendar();
+            var dateTime1 = string.Format("{0} 年 {1} 月 {2} 日",taiwanCalender.GetYear(dt1),dt1.Month,dt1.Day);
+            var dateTime2 = string.Format("{0} 年 {1} 月 {2} 日",taiwanCalender.GetYear(dt2), dt2.Month, dt2.Day);
+
+
+
+            #region 取得選取學生
+            List <SHStudentRecord> studentAll = SHStudent.SelectByIDs(studentIds);
 			List<SHUpdateRecordRecord> updateRecord = SHUpdateRecord.SelectByStudentIDs(studentIds);
 
 			Dictionary<string, StudentObj> dic = new Dictionary<string, StudentObj>();
@@ -137,26 +172,32 @@ namespace DropOut
 			#endregion
 			Dictionary<string, object> merge = new Dictionary<string, object>();
 			string  serverTime = GetServerTime() ;
-			foreach (StudentObj obj in dic.Values)
+            string serverTimeTW = GetServerTimeTW();
+
+            foreach (StudentObj obj in dic.Values)
 			{
 				Document perPage = template.Clone();
 				merge.Clear();
 
 				merge.Add("起始時間", dateTimeInput1.Value.ToString("yyyy年MM月dd日"));
 				merge.Add("訖末時間", dateTimeInput2.Value.ToString("yyyy年MM月dd日"));
-				merge.Add("編字", No1);
+                merge.Add("起始時間(民國)", dateTime1);
+                merge.Add("訖末時間(民國)", dateTime2);
+                merge.Add("編字", No1);
 				merge.Add("編號", No2);
 				merge.Add("年級", schoolYear);
 				merge.Add("學期", semester);
 				merge.Add("學校名稱", DSNSName);
 				merge.Add("校長姓名", Principal);
 				merge.Add("列印日期", serverTime);
-				merge.Add("學生姓名", obj.Student.Name);
+                merge.Add("列印日期(民國)", serverTimeTW);
+                merge.Add("學生姓名", obj.Student.Name);
 				merge.Add("學號", obj.Student.StudentNumber);
 				merge.Add("休學年級", obj.URR.GradeYear);
 				merge.Add("休學學期", obj.URR.Semester);
 				merge.Add("科系", obj.URR == null ? string.Empty : obj.URR.Department);
 				merge.Add("休學事由", obj.URR == null ? string.Empty : obj.URR.UpdateDescription);
+
 
 				perPage.MailMerge.Execute(merge.Keys.ToArray<string>(), merge.Values.ToArray<object>());
 				perPage.MailMerge.RemoveEmptyParagraphs = true;
@@ -266,6 +307,8 @@ namespace DropOut
 			}
 		}
 
+
+
 		private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			SetUserDefineTemplateToSystem();
@@ -304,5 +347,19 @@ namespace DropOut
 			}
 		}
 
-	}
+        private void DropOutForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LabelX4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LabelX5_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
