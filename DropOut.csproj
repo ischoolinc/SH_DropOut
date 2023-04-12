@@ -30,20 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aspose.Words">
-      <HintPath>library\Aspose.Words.dll</HintPath>
+    <Reference Include="Aspose.Words_201402">
+      <HintPath>library\Aspose.Words_201402.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=9.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>library\DevComponents.DotNetBar2.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="FISCA">
       <HintPath>library\FISCA.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="FISCA.Authentication">
-      <HintPath>..\..\ischool desktop\kernel\FISCA.Authentication.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.Data">
@@ -108,7 +105,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\休學證明書.doc" />
+    <None Include="Resources\休學證明書.docx" />
     <None Include="Resources\休學證明書合併欄位.doc" />
+    <None Include="Resources\休學證明書合併欄位.docx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Report.png" />

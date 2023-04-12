@@ -24,7 +24,7 @@ namespace DropOut
 		private byte[] defalutTemplate;
 
 		ConfigData cd = School.Configuration["休學證明書_無成績"];
-		private List<string> updateCode = new List<string> { "341", "342", "343", "344", "345", "346", "347", "348", "349", "350", "368" };
+		private List<string> updateCode = new List<string> { "340","341", "342", "343", "344", "345", "346", "347", "348", "349", "350", "368" };
 
 		public DropOutForm(List<string> selectClassIds)
 		{
@@ -222,13 +222,13 @@ namespace DropOut
 
 			System.Windows.Forms.SaveFileDialog sd = new System.Windows.Forms.SaveFileDialog();
 			sd.Title = "另存新檔";
-			sd.FileName = reportName + ".doc";
-			sd.Filter = "Word檔案 (*.doc)|*.doc|所有檔案 (*.*)|*.*";
+			sd.FileName = reportName + ".docx";
+			sd.Filter = "Word檔案 (*.docx)|*.docx|所有檔案 (*.*)|*.*";
 			if (sd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
 				try
 				{
-					document.Save(sd.FileName, Aspose.Words.SaveFormat.Doc);
+					document.Save(sd.FileName, Aspose.Words.SaveFormat.Docx);
 					System.Diagnostics.Process.Start(sd.FileName);
 				}
 				catch (Exception ex)
@@ -251,12 +251,15 @@ namespace DropOut
 		{
 			OpenFileDialog ofd = new OpenFileDialog();
 			ofd.Title = "選擇自訂的休學證明書範本";
-			ofd.Filter = "Word檔案 (*.doc)|*.doc";
+			//ofd.Filter = "Word檔案 (*.docx)|*.docx";
+			ofd.Filter = "Word檔案 (*.docx)|*.docx|Word檔案 (*.doc)|*.doc";
 			if (ofd.ShowDialog() == DialogResult.OK)
 			{
 				try
 				{
-					if (Document.DetectFileFormat(ofd.FileName) == LoadFormat.Doc)
+					string fileExt =  System.IO.Path.GetExtension(ofd.FileName);
+					//if (Document.DetectFileFormat(ofd.FileName) == LoadFormat.Docx)
+					if (fileExt == ".doc" || fileExt == ".docx")
 					{
 						FileStream fs = new FileStream(ofd.FileName, FileMode.Open);
 
@@ -288,8 +291,8 @@ namespace DropOut
 		{
 			SaveFileDialog sfd = new SaveFileDialog();
 			sfd.Title = "另存新檔";
-			sfd.FileName = "休學證明書(樣板).doc";
-			sfd.Filter = "Word檔案 (*.doc)|*.doc|所有檔案 (*.*)|*.*";
+			sfd.FileName = "休學證明書(樣板).docx";
+			sfd.Filter = "Word檔案 (*.docx)|*.docx|所有檔案 (*.*)|*.*";
 			if (sfd.ShowDialog() == DialogResult.OK)
 			{
 				try
@@ -330,13 +333,13 @@ namespace DropOut
 			Document document = new Document(new MemoryStream(Properties.Resources.休學證明書合併欄位));
 			System.Windows.Forms.SaveFileDialog sd = new System.Windows.Forms.SaveFileDialog();
 			sd.Title = "另存新檔";
-			sd.FileName = "休學證明書合併欄位" + ".doc";
-			sd.Filter = "Word檔案 (*.doc)|*.doc|所有檔案 (*.*)|*.*";
+			sd.FileName = "休學證明書合併欄位" + ".docx";
+			sd.Filter = "Word檔案 (*.docx)|*.docx|所有檔案 (*.*)|*.*";
 			if (sd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
 				try
 				{
-					document.Save(sd.FileName, Aspose.Words.SaveFormat.Doc);
+					document.Save(sd.FileName, Aspose.Words.SaveFormat.Docx);
 					System.Diagnostics.Process.Start(sd.FileName);
 				}
 				catch (Exception ex)
